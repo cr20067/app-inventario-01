@@ -2,7 +2,7 @@ import "./Navbar.css";
 
 import { FaBars, FaMoon, FaSun } from "react-icons/fa";
 import { useContext } from "react";
-import { SidebarContext } from "../../context/SidebarContext";
+import { SidebarContext } from "../../../context/SidebarContext";
 import { Link } from "react-router-dom";
 
 function Navbar( { darkMode, setDarkMode } ) {

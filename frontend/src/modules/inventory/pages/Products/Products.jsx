@@ -3,11 +3,14 @@ import "./Products.css";
 import { useRef, useState } from "react";
 
 import ProductCard from "../../components/ProductCard/ProductCard";
-import ConfirmModal from "../../components/ConfirmModal/ConfirmModal";
-import initialProducts from "../../data/products";
+import ConfirmModal from "../../../../shared/components/ConfirmModal/ConfirmModal";
+import { getProducts, saveProducts, deleteProduct } from "../../services/inventoryService";
 import categories from "../../data/categories";
+import { useInventory } from "../../context/InventoryContext";
 
-function Products({ products = [], setProducts, showToast }) {
+function Products({ showToast }) {
+
+  const { products, setProducts } = useInventory();
 
   // Creacion de estados modal
   const [showModal, setShowModal] = useState(false);
@@ -15,6 +18,9 @@ function Products({ products = [], setProducts, showToast }) {
   const [searchTerm, setSearchTerm] = useState("");
   // Estado para filtro de categoria
   const [selectedCategory, setSelectedCategory] = useState("");
+  // Estados para filtro de precio
+  const [minPrice, setMinPrice] = useState("");
+  const [maxPrice, setMaxPrice] = useState("");
   // Estado para producto seleccionado en el modal
   const [selectedProduct, setSelectedProduct] = useState(null);
 
@@ -28,10 +34,8 @@ function Products({ products = [], setProducts, showToast }) {
   };
 
   const filteredProducts = products.filter((product) => {
-
     const search = searchTerm.toLowerCase();
-
-    // filtro de busqueda por nombre y ID del producto
+    // filtro de busqueda por nombre, ID y marca del producto
     const matchesSearch =
       product.name
         .toLowerCase()
@@ -40,6 +44,10 @@ function Products({ products = [], setProducts, showToast }) {
       product.id
         .toString()
         .includes(search)
+      ||
+      product.brand
+        .toLowerCase()
+        .includes(search);
 
     // filtro por categoria 
     const matchesCategory =
@@ -47,9 +55,16 @@ function Products({ products = [], setProducts, showToast }) {
       ||
       product.category === selectedCategory;
 
+    // Filtro por rango de precio
+    const matchesPrice =
+      (minPrice === "" || product.price >= parseFloat(minPrice)) &&
+      (maxPrice === "" || product.price <= parseFloat(maxPrice));
+
+
     return (
       matchesSearch &&
-      matchesCategory
+      matchesCategory &&
+      matchesPrice
     );
   });
 
@@ -58,7 +73,7 @@ function Products({ products = [], setProducts, showToast }) {
 
     const deletedProduct = selectedProduct;
 
-    const updatedProducts = products.filter((p) => p.id !== deletedProduct.id);
+    const updatedProducts = deleteProducts(deletedProduct.id);
 
     setProducts(updatedProducts);
 
@@ -81,10 +96,14 @@ function Products({ products = [], setProducts, showToast }) {
       onAction: () => {
         clearTimeout(deleteTimer.current);
 
-        setProducts((prev) => [
-          ...prev,
+        const restoredProducts = [
+          ...getProducts(),
           deletedProduct
-        ]);
+        ];
+
+        saveProducts(restoredProducts);
+
+        setProducts(restoredProducts);
 
         showToast({
           message: "Producto restaurado",
@@ -98,8 +117,9 @@ function Products({ products = [], setProducts, showToast }) {
   // Temporal para restaurar los datos
   //-----------------------------------------
   const resetProducts = () => {
-    localStorage.removeItem("products");
-    setProducts(initialProducts);
+    localStorage.removeItem("inventory_products");
+    const restoredProducts = getProducts();
+    setProducts(restoredProducts);
   };
   //-----------------------------------------
 
@@ -109,6 +129,7 @@ function Products({ products = [], setProducts, showToast }) {
       <div className="products-header">
         <h1>Productos</h1>
       </div>
+
       <div className="search-container">
         <input
           type="text"
@@ -135,6 +156,21 @@ function Products({ products = [], setProducts, showToast }) {
             </option>
           ))}
         </select>
+      </div>
+
+      <div className="price-filter">
+        <input
+          type="number"
+          placeholder="Precio mínimo"
+          value={minPrice}
+          onChange={(e) => setMinPrice(e.target.value)}
+        />
+        <input
+          type="number"
+          placeholder="Precio máximo"
+          value={maxPrice}
+          onChange={(e) => setMaxPrice(e.target.value)}
+        />
       </div>
 
       {/* GRID */}

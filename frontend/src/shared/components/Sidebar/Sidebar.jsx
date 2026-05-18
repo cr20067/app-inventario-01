@@ -1,14 +1,9 @@
 import "./Sidebar.css";
 
 import { useContext } from "react";
-import { SidebarContext } from "../../context/SidebarContext";
+import { SidebarContext } from "../../../context/SidebarContext";
 import { Link } from "react-router-dom";
-import {
-  FaHome,
-  FaBox,
-  FaPlusCircle,
-  FaChartBar
-} from "react-icons/fa";
+import { FaHome, FaBox, FaPlusCircle, FaChartBar } from "react-icons/fa";
 
 function Sidebar() {
 

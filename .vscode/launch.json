@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-InventarioTiendaTecnologicaApplication<inventario-tienda-tecnologica>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.tienda.inventario_tienda_tecnologica.InventarioTiendaTecnologicaApplication",
+            "projectName": "inventario-tienda-tecnologica",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}

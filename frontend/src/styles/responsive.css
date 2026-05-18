@@ -1,0 +1,23 @@
+/* Tablet */
+@media (min-width: 768px) {
+
+  .menu-button {
+    display: none;
+  }
+
+  .desktop-nav {
+    display: flex;
+    gap: 25px;
+  }
+
+}
+
+/* Laptop */
+@media (min-width: 1024px) {
+
+}
+
+/* Pantallas grandes */
+@media (min-width: 1280px) {
+    
+}

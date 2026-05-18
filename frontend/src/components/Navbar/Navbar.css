@@ -1,0 +1,83 @@
+.navbar {
+  background: var(--color-primary);
+  color: white;
+  padding: 15px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: var(--shadow-sm);
+}
+
+.navbar a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px;
+  border-radius: 15px;
+  color: var(--color-text);
+  font-weight: 500;
+  transition: 0.2s;
+}
+
+.navbar a:hover {
+  background: #18529e;
+  color: var(--color-surface);
+  transform: translateX(5px);
+}
+
+.logo {
+  font-size: 22px;
+}
+
+/* BOTÓN MOBILE */
+
+.menu-button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 22px;
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  transition: 0.2s;
+}
+
+.menu-button:hover {
+  background: rgba(255,255,255,0.15);
+}
+
+.menu-button:active {
+  transform: scale(0.95);
+}
+
+/* NAV DESKTOP */
+
+.desktop-nav {
+  display: none;
+}
+
+.desktop-nav a {
+  color: var(--color-surface);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+/* Tema */
+.theme-toggle {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--color-text);
+  transition: 0.2s;
+}
+
+.theme-toggle:hover {
+  transform: scale(1.05);
+  background: var(--color-primary);
+  color: white;
+}

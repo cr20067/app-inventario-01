@@ -1,9 +1,11 @@
 import "./Navbar.css";
 
-import { FaBars, FaMoon, FaSun } from "react-icons/fa";
+import { FaBars, FaMoon, FaSun, FaCashRegister } from "react-icons/fa";
 import { useContext } from "react";
 import { SidebarContext } from "../../../context/SidebarContext";
 import { Link } from "react-router-dom";
+
+import NavbarDropdown from "../../components/NavbarDropdown/NavbarDropdown";
 
 function Navbar( { darkMode, setDarkMode } ) {
 
@@ -26,13 +28,33 @@ function Navbar( { darkMode, setDarkMode } ) {
 
         <Link to="/">Inicio</Link>
 
-        <Link to="/productos">
-          Productos
-        </Link>
+        <NavbarDropdown title="Inventario">
 
-        <Link to="/agregar">
-          Agregar
-        </Link>
+          <Link to="/productos">
+            Productos
+          </Link>
+
+          <Link to="/agregar">
+            Agregar
+          </Link>
+
+          <Link to="/movimientos">
+            Movimientos
+          </Link>
+
+        </NavbarDropdown>
+
+        <NavbarDropdown title="Ventas">
+
+          <Link to="/ventas/nueva">
+            Nueva Venta
+          </Link>
+
+          <Link to="/ventas/historial">
+            Historial
+          </Link>
+
+        </NavbarDropdown>
 
         <Link to="/reportes">
           Reportes

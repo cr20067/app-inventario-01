@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import { useState, useEffect } from "react";
+import { InventoryProvider } from "./modules/inventory/context/InventoryContext";
 
 import MainLayout from "./shared/layouts/MainLayout";
 import Home from "./pages/Home/Home";
@@ -10,7 +11,7 @@ import initialProducts from "./modules/inventory/data/products";
 import EditProduct from "./modules/inventory/pages/EditProduct/EditProduct";
 import Movements from "./modules/inventory/pages/Movements/Movements";
 import Toast from "./shared/components/Toast/Toast";
-import { InventoryProvider } from "./modules/inventory/context/InventoryContext";
+import NewSale from "./modules/sales/pages/NewSale/NewSale";
 
 function App() {
 
@@ -80,10 +81,13 @@ function App() {
 
           <Routes>
             <Route path="/" element={<Home />} />
+
             <Route path="/productos" element={<Products  showToast={showToast}/>} />
             <Route path="/agregar" element={<AddProduct  showToast={showToast}/>} />
             <Route path="/editar/:id" element={<EditProduct  showToast={showToast}/>} />
             <Route path="/movimientos" element={<Movements />} />
+
+            <Route path="/ventas/nueva" element={<NewSale />} />
           </Routes>
 
         </MainLayout>

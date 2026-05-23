@@ -3,7 +3,16 @@ import "./Sidebar.css";
 import { useContext } from "react";
 import { SidebarContext } from "../../../context/SidebarContext";
 import { Link } from "react-router-dom";
-import { FaHome, FaBox, FaPlusCircle, FaChartBar } from "react-icons/fa";
+import {
+  FaHome,
+  FaBox,
+  FaChartBar,
+  FaClipboardList,
+  FaCashRegister,
+  FaReceipt
+} from "react-icons/fa";
+
+import SidebarSection from "../../components/SidebarSection/SidebarSection";
 
 function Sidebar() {
 
@@ -31,21 +40,52 @@ function Sidebar() {
            Inicio
         </Link>
 
-        <Link
-          to="/productos"
-          onClick={closeSidebar}
+        <SidebarSection
+          icon={<FaBox />}
+          title="Inventario"
         >
-          <FaBox />
-          Productos
-        </Link>
 
-        <Link
-          to="/agregar"
-          onClick={closeSidebar}
+          <Link
+            to="/productos"
+            onClick={closeSidebar}
+          >
+            Productos
+          </Link>
+
+          <Link
+            to="/agregar"
+            onClick={closeSidebar}
+          >
+            Agregar
+          </Link>
+
+          <Link
+            to="/movimientos"
+            onClick={closeSidebar}
+          >
+            Movimientos
+          </Link>
+        </SidebarSection>
+
+        <SidebarSection
+          icon={<FaCashRegister />}
+          title="Ventas"
         >
-          <FaPlusCircle />
-          Agregar
-        </Link>
+
+          <Link
+            to="/ventas/nueva"
+            onClick={closeSidebar}
+          >
+            Nueva Venta
+          </Link>
+
+          <Link
+            to="/ventas/historial"
+            onClick={closeSidebar}
+          >
+            Historial
+          </Link>
+        </SidebarSection>
 
         <Link
           to="/reportes"

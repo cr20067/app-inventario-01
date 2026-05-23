@@ -1,0 +1,64 @@
+.new-sale-page {
+  padding: 20px;
+}
+
+.sale-form {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+}
+
+.sale-form select,
+.sale-form input {
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid var(--color-border);
+}
+
+.sale-form button {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 12px;
+  background: var(--color-primary);
+  color: white;
+  cursor: pointer;
+}
+
+.cart-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.cart-item {
+  background: var(--color-surface);
+  padding: 16px;
+  border-radius: 14px;
+  box-shadow: var(--shadow-sm);
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sale-total {
+  margin-top: 20px;
+}
+
+/*-------------------------------------------*/
+.confirm-sale-button {
+  margin-top: 20px;
+  padding: 14px 22px;
+  border: none;
+  border-radius: 12px;
+  background: #16a34a;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.confirm-sale-button:hover {
+  transform: scale(1.03);
+}

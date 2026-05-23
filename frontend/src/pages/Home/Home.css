@@ -13,8 +13,103 @@
 
 .dashboard-grid {
   display: grid;
-
   grid-template-columns: 1fr 1fr;
-
   gap: 20px;
 }
+
+/*-------------------Seccion estadisticas------------------------*/
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.stat-card {
+  background: var(--color-surface);
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: var(--shadow-sm);
+  transition: 0.2s;
+}
+
+.stat-card:hover {
+  transform: translateY(-4px);
+}
+
+.stat-card h3 {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.stat-card p {
+  font-size: 28px;
+  font-weight: bold;
+}
+
+/*-------------------Productos de bajo stock------------------------*/
+.low-stock-section {
+  margin-bottom: 30px;
+}
+
+.low-stock-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.low-stock-card {
+  background: #fff5f5;
+  border-left: 5px solid #ef4444;
+  padding: 16px;
+  border-radius: 14px;
+  box-shadow: var(--shadow-sm);
+}
+
+.low-stock-card h3 {
+  margin-bottom: 8px;
+}
+
+/*-------------------Movimientos recientes------------------------*/
+.recent-movements-section {
+  margin-bottom: 30px;
+}
+
+.recent-movements-list {
+  display: grid;
+  grid-template-columns:
+    repeat(auto-fit, minmax(260px, 1fr));
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.movement-card {
+  background: var(--color-surface);
+  border-radius: 16px;
+  padding: 18px;
+  box-shadow: var(--shadow-sm);
+  transition: 0.2s;
+}
+
+.movement-card:hover {
+  transform: translateY(-4px);
+}
+
+.movement-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.movement-entry {
+  color: #16a34a;
+  font-weight: bold;
+}
+
+.movement-exit {
+  color: #dc2626;
+  font-weight: bold;
+}
+
+/*-------------------------------------------*/

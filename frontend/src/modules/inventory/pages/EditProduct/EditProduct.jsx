@@ -4,10 +4,14 @@ import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 import categories from "../../data/categories";
+import { useInventory } from "../../context/InventoryContext";
+import { updateProduct } from "../../services/inventoryService";
+import { addMovement } from "../../services/movementService";
 
-function EditProduct({ products, setProducts, showToast }) {
+function EditProduct({ showToast }) {
 
   const { id } = useParams();
+  const { products, setProducts } = useInventory();
 
   const navigate = useNavigate();
 
@@ -35,22 +39,36 @@ function EditProduct({ products, setProducts, showToast }) {
 
     e.preventDefault();
 
-    const updatedProducts =
-      products.map((p) => {
-        if (p.id === product.id) {
-          return {
-            ...p,
-            name,
-            brand,
-            model,
-            price,
-            stock,
-            category
-          };
-        }
-        return p;
-      });
+    const previousStock = Number(product.stock);
+
+    const newStock = Number(stock);
+
+    const stockDifference = newStock - previousStock;
+    // Si hay un cambio en el stock, registrar el movimiento
+    const updatedProduct = {
+      ...product,
+      name,
+      brand,
+      model,
+      price: Number(price),
+      stock: Number(stock),
+      category
+    };
+
+    const updatedProducts = updateProduct(updatedProduct);
+
     setProducts(updatedProducts);
+
+    if (stockDifference !== 0) {
+      addMovement({
+        productId: product.id,
+        productName: product.name,
+        type: stockDifference > 0 ? "entry" : "exit",
+        quantity: Math.abs(stockDifference),
+        previousStock,
+        newStock,
+      });
+    }
 
     // Mostrar mensaje de producto actualizado
     showToast({

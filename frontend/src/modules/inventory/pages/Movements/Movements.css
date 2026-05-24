@@ -1,0 +1,24 @@
+.movements-page {
+  padding: 20px;
+}
+
+.movements-header {
+  margin-bottom: 20px;
+}
+
+.movements-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+}
+
+.movements-table th,
+.movements-table td {
+  padding: 12px;
+  border-bottom: 1px solid #ddd;
+  text-align: left;
+}
+
+.movements-table th {
+  background: #f5f5f5;
+}
